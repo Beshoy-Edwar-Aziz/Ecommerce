@@ -10,6 +10,7 @@ let {required,maxLength,minLength,pattern}=Validators
 })
 export class CheckoutComponent {
   id:any=''
+  loading:boolean=false;
   constructor(private _cartService:CartService,private _ActivatedRoute:ActivatedRoute){
   
   }
@@ -20,10 +21,11 @@ export class CheckoutComponent {
   })
   handleShipping(submit:FormGroup){
     console.log(submit.value);
+    this.loading=true;
    this._ActivatedRoute.params.subscribe((data:any)=>{
     this.id=data.id
     console.log(this.id);
-    
+    this.loading=false;   
    })
    
     this._cartService.checkout(this.id,submit.value).subscribe({

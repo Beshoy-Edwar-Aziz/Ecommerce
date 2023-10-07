@@ -2,8 +2,21 @@
     <form class="w-50 mx-auto" [formGroup]="shippingDetails" (ngSubmit)="handleShipping(shippingDetails)">
         <h2>Shipping Details:</h2>
         <input type="text" formControlName="details" class="form-control" placeholder="Details">
+        <div class="alert alert-danger  my-3 " *ngIf="shippingDetails.get('details')?.touched&&shippingDetails.get('details')?.errors">
+            <span *ngIf="shippingDetails.get('details')?.getError('required')">Details is Required</span>
+        </div>
         <input type="tel" formControlName="phone" class="form-control my-3" placeholder="Phone">
+        <div class="alert alert-danger  my-3" *ngIf="shippingDetails.get('phone')?.touched&&shippingDetails.get('phone')?.errors">
+            <span *ngIf="shippingDetails.get('phone')?.getError('required')">Phone is Required</span>
+            <span *ngIf="shippingDetails.get('phone')?.getError('pattern')">Phone is Invalid</span>
+        </div>
         <input type="text" formControlName="city" class="form-control mb-3" placeholder="City">
-        <button class="btn btn-success w-100">Pay <i class="fa-brands fab fa-cc-visa"></i></button>
+        <div class="alert alert-danger my-3" *ngIf="shippingDetails.get('city')?.touched&&shippingDetails.get('city')?.errors">
+            <span *ngIf="shippingDetails.get('city')?.getError('required')">City is Required</span>
+        </div>
+        <button class="btn btn-success w-100" [disabled]="shippingDetails.invalid">
+         <span *ngIf="!loading">Pay <i class="fa-brands fab fa-cc-visa"></i></span>
+         <span *ngIf="loading"><i class="fas fa-spinner fa-spin"></i></span>   
+        </button>
     </form>
 </div>

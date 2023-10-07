@@ -22,7 +22,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link position-relative" routerLink="/wishList" (mouseenter)="heartBeat()" (mouseleave)="heartBeatStop()">
-            <i class="far fa-heart heartBeat"></i>
+            <i class="far fa-heart heartBeat fs-5"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {{countWish}} 
             </span>
@@ -30,7 +30,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link position-relative" routerLink="/cart" (mouseenter)="enter()" (mouseleave)="stop()">
-            <i class="fa-solid fa-cart-shopping cart"></i>
+            <i class="fa-solid fa-cart-shopping cart fs-5"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {{count}}
             </span>
@@ -43,10 +43,14 @@
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item">
-          <a class="nav-link" routerLink="/profile">Profile</a>
+          <a class="nav-link" routerLink="/profile">
+            
+              <i class="fa-solid fa-user fs-5"></i>
+      
+          </a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item">
-          <a class="nav-link" (click)="removeToken()" routerLink="/logout">Logout</a>
+          <a class="nav-link" (click)="removeToken()" routerLink="/logout">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
         </li>
       </ul>
     </div>
