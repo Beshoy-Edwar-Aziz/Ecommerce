@@ -1,0 +1,12 @@
+<div class="container min-vh-100 my-3">
+    <div class="row gy-4" *ngFor="let item of cartItems; let i=index">
+        <div class="d-flex justify-content-between position-relative top">
+        <h2 class="priceLine  ">Total Price is : {{item.totalOrderPrice|currency:'EGP'}}</h2>
+        <h2>Date Of Order : {{item.createdAt|date}}</h2>
+    </div>
+        <div class="col-md-3 bg-body-secondary py-3" *ngFor="let item2 of item.cartItems">
+            <img [src]="item2.product.imageCover" class="w-100" alt="">
+            {{item2.product.title}}
+        </div>
+        </div>
+    </div>

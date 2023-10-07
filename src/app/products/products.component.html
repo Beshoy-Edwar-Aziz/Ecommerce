@@ -1,0 +1,52 @@
+<app-loading *ngIf="showProducts.length==0"></app-loading>
+<main>
+<div class="container my-4">
+    <div class="d-flex align-items-center justify-content-center ">
+        <i class="fas fa-search me-1"></i>
+        <input type="text" id="search" [(ngModel)]="searchVal" placeholder="Search..." class="form-control w-25 my-3">
+    </div>
+    <div class="row gy-3">
+        <div *ngFor="let showProduct of showProducts|search:searchVal; let i=index" class="col-md-2 product">
+            <a class="text-decoration-none text-reset" [routerLink]="['/details/'+showProduct.slug+'/'+showProduct._id]">
+            <div class="overflow-hidden prodImg">
+                <img [src]="showProduct.imageCover" class="w-100" alt="">
+            </div>
+            <span class="text-success">{{showProduct.category.name}}</span>
+            <h5>{{showProduct.title.split(' ').slice(0,2).join(' ')}}</h5>
+            <div class="d-flex justify-content-between">
+            <span>{{showProduct.price|currency:'EGP'}}</span>
+            <div>
+            <span><i class="fa-solid fa-star"></i> {{showProduct.ratingsAverage}}</span>
+            </div>
+            </div>
+        </a>
+        
+            <div class="d-flex justify-content-center my-3">
+                <button (click)="addToCart(showProduct._id)" id="addBtn" class="btn btn-success w-100">
+                <span *ngIf="!loading">Add To Cart</span>
+                <span *ngIf="loading"><i class="fas fa-spinner fa-spin"></i></span>    
+                </button>
+                <span class="ms-2" (click)="addToWishList(showProduct._id)">
+                    <i [ngClass]="boi.indexOf(showProduct._id)>=0?'fas fa-heart ':'far fa-heart '"  (click)="colorHeart(i)" class="far fa-heart  heart"></i>        
+                </span>
+            </div>
+        </div>
+    </div>
+    <nav class="d-flex justify-content-center" aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link pageNum">1</a></li>
+          <li class="page-item"><a class="page-link pageNum">2</a></li>
+          <li class="page-item">
+            <a class="page-link" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+</div>
+</main>

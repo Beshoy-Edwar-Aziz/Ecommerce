@@ -1,0 +1,21 @@
+<main>
+    <div class="container">
+        <div class="row g-3">
+            <div *ngIf="allCategories.length==0">
+                <app-loading></app-loading>
+              </div>
+            <div class="col-12 col-lg-4" *ngFor="let category of allCategories">
+                <div class="card">
+                    <div class="card-img overflow-hidden">
+                        <img [src]="category.image" class="img-thumbnail w-100 ratio-21x9" style="height:300px;" alt="categoryimg">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <p class="lead text-center fw-semibold">{{category.name}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

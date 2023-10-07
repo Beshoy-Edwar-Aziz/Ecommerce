@@ -1,0 +1,42 @@
+<div *ngIf="loadingPage">
+    <app-loading></app-loading>
+</div>
+<div class="container my-5" *ngIf="check()&&thereIsCart==false; else nodata" >
+    <div class="d-flex justify-content-between bg-body-secondary py-3 px-2">
+    <h2 class="lead">Total Price is {{loggedCart.totalCartPrice|currency:"EGP"}}</h2>
+    <span class="remBtn text-danger" (click)="deleteAllCart()">Remove All <i class="fa-solid fa-trash"></i></span>
+</div>
+    <div class="row my-3" *ngFor="let item of loggedCart.products">
+        <div class="col-md-2">
+            <img [src]="item.product.imageCover" class="w-100" alt="">
+        </div>
+        <div class="col-md-10 d-flex justify-content-between ">
+            <div>
+                <h5>{{item.product.title.split(' ').slice(0,2).join(' ')}}</h5>
+                <span>{{item.price|currency:"EGP"}}</span>
+                <span (click)="deleteItem(item.product._id)" class="d-block text-danger mt-3 remBtn">
+                  <span *ngIf="!isloading">Remove <i class="fa-solid fa-trash"></i></span>
+                  <span *ngIf="isloading"><i class="fa fa-spinner fa-spin"></i></span>  
+                </span>
+            </div>
+            <div>
+                <button class="btn btn-success" (click)="updateItem(item.product._id,item.count+1)">
+                <span *ngIf="!loading">+</span>
+                <span *ngIf="loading"><i class="fa fa-spinner fa-spin"></i></span>    
+                </button>
+                <span class="mx-2" >{{item.count}}</span>
+                <button class="btn btn-success" (click)="updateItem(item.product._id,item.count-1)">
+                   <span *ngIf="!loading">-</span> 
+                   <span *ngIf="loading"><i class="fa fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <a [routerLink]="['/checkout/'+loggedCart._id]"><button class="btn btn-success w-100">Checkout</button></a>
+</div>
+<ng-template #nodata>
+    <div class="container gent d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <i class="fa-regular fa-circle-xmark fa-beat-fade"></i>
+        <p>Cart is Empty</p>
+    </div>
+</ng-template>

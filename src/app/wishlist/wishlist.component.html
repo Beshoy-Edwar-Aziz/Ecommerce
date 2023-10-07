@@ -1,0 +1,27 @@
+<main>
+    <div *ngIf="wishList==0">
+        <app-loading></app-loading>
+    </div>
+    <div class="container my-5 bg-body-secondary">
+        <div *ngFor="let wish of wishList" class="row g-3 my-3 pb-3 ">
+            <div  class="col-12 col-lg-2">
+                <img [src]="wish.imageCover" alt="" class="w-100 rounded">
+            </div>
+            <div  class="col-12 col-lg-10">
+                <h2>{{wish.title.split(' ').slice(0,2).join(' ')}}</h2>
+                <p class="text-start">{{wish.description}}</p>
+                <span class="fw-bold text-success">{{wish.price|currency:'EGP'}}</span>
+                <div class="mt-2 d-flex justify-content-between ">
+                    <button class="btn btn-outline-danger" (click)="deleteWishItem(wish._id)"><i class="fas fa-trash"></i> Remove</button>
+                    <button class="btn btn-outline-success align-self-end" (click)="addToCart(wish._id)"><i class="fas fa-plus"></i> Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<ng-template #nodata>
+    <div class="container gent d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <i class="fa-regular fa-circle-xmark fa-beat-fade"></i>
+        <p>Wishlist is Empty</p>
+    </div>
+</ng-template>

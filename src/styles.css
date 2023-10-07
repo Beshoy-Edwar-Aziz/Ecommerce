@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+footer{
+    padding: 20px 0;
+    background-color: #444;
+}
+section{
+    padding: 80px 0;
+}
+p{
+    text-align: center;
+}

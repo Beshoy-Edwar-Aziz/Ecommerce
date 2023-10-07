@@ -1,0 +1,36 @@
+<main>
+<app-loading *ngIf="brands.length==0"></app-loading>
+<div class="container">
+    <h1 class="text-center mb-5">Brands</h1>
+    <div class="row g-5">
+        <div class="col-12 col-lg-3" *ngFor="let brand of brands">
+            <div class="brand rounded p-3" (click)="getSpecificBrand(brand._id)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <img [src]="brand.image" class="w-100 img-fluid" alt="brands">
+                <p class="lead">{{brand.name}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Brand Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                <div *ngIf="loading" class="go">
+                    <div class="loading d-flex justify-content-center align-items-center">
+                        <div class="lds-ripple"><div></div><div></div></div>
+                    </div>
+                </div>
+            <img [src]="specifiedBrand.image" class="w-100" alt="brandimg">
+            <p class="lead">{{specifiedBrand.name}}</p> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

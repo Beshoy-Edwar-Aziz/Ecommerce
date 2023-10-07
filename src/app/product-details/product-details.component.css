@@ -1,0 +1,12 @@
+span i{
+   color: #ffff00;
+}
+main{
+   padding: 80px 0;
+}
+.heart{
+   color: #d9534f !important
+}
+.heart:hover{
+   cursor: pointer;
+}

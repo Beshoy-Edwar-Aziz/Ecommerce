@@ -1,0 +1,9 @@
+    <div class="main d-flex align-items-center">
+    <form class="w-50 mx-auto" [formGroup]="shippingDetails" (ngSubmit)="handleShipping(shippingDetails)">
+        <h2>Shipping Details:</h2>
+        <input type="text" formControlName="details" class="form-control" placeholder="Details">
+        <input type="tel" formControlName="phone" class="form-control my-3" placeholder="Phone">
+        <input type="text" formControlName="city" class="form-control mb-3" placeholder="City">
+        <button class="btn btn-success w-100">Pay <i class="fa-brands fab fa-cc-visa"></i></button>
+    </form>
+</div>
