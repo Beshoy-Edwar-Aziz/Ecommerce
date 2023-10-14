@@ -12,6 +12,7 @@ export class LogoutComponent{
   constructor(private _Auth:AuthService,private _Cart:CartService,private _wishList:WishlistService){
     this._Cart.changeCartCount(0);
     this._wishList.changeCountOfWish(0);
+    localStorage.removeItem('tokens')
   }
   ngOnInit(){
     this._Auth.decodeUserToken();

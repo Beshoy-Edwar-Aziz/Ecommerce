@@ -13,7 +13,6 @@ export class LoginComponent {
   isloading:boolean=false;
   message:string=''
   constructor(public _auth:AuthService,public _Router:Router,private _cart:CartService){
-  
   }
   login: FormGroup=new FormGroup({
     email: new FormControl('',[required,email]),
@@ -23,19 +22,16 @@ export class LoginComponent {
     this.isloading=true;
     if(this.login.invalid!=true){
       this.isloading=false;
-      console.log(this.login.value);
       this._auth.getSignIn(this.login.value).subscribe({
         next: (data:any)=>{
           this.isloading=false;
           if(data.message=="success"){
-            console.log(data.token);
             localStorage.setItem('tokens',data.token)
             this._auth.decodeUserToken()
             this._Router.navigate(['/home'])
             this._cart.getCart().subscribe({
               next: (data)=>{
                 this._cart.changeCartCount(data.numOfCartItems)
-                console.log(data);
                 }
             })
           }

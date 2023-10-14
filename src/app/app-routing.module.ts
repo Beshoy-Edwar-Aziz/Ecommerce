@@ -35,6 +35,8 @@ const routes: Routes = [
   {path:'profile',title:'Profile',canActivate:[authGuard],loadChildren: ()=>import('./profile/profile.module').then((m)=>m.ProfileModule)},
   {path:'forgotPassword',title:'ForgetPass',loadChildren:()=>import('./forget-password/forget-password.module').then((m)=>m.ForgetPasswordModule)},
   {path:'newPassword',title:'NewPassword',loadChildren:()=>import('./new-password/new-password.module').then((m)=>m.NewPasswordModule)},
+  {path:'updateUserData',title:'UpdateUserData',loadChildren:()=>import('./update-user-profile/update-user-profile.module').then((m)=>m.UpdateUserProfileModule)},
+  {path:'updateUserPassword',title:'Update Your Password',loadChildren:()=>import('./update-user-password/update-user-password.module').then((m)=>m.UpdateUserPasswordModule)},
   {path:'**',component:NotfoundComponent},
   
 ];

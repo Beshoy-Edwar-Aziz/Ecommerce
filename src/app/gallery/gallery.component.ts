@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductServiceService } from '../product-service.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-gallery',
@@ -11,7 +12,7 @@ export class GalleryComponent {
   
   categories:any[]=[]
   
-  constructor(private _productService:ProductServiceService){
+  constructor(private _productService:ProductServiceService,private _wishlist:WishlistService){
     
     this._productService.getProducts().subscribe(
       {
@@ -24,6 +25,11 @@ export class GalleryComponent {
         }
       }
     )
+    this._wishlist.showWishList().subscribe({
+      next:(data)=>{
+        this._wishlist.changeCountOfWish(data.data.length)
+      }
+    })
   }
   customOptions: OwlOptions = {
     loop: true,

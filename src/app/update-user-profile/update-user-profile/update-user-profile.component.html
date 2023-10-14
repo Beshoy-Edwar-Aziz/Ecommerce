@@ -1,0 +1,26 @@
+<main>
+<form class="w-50 m-auto" (ngSubmit)="handleUpdateForm(updateForm)" [formGroup]="updateForm">
+    <h2 class="lead fw-semibold">Update User Data</h2>
+    <input type="text" placeholder="Enter Your New Name" class="form-control mt-3" formControlName="name">
+    <div class="alert alert-danger my-3" *ngIf="updateForm.get('name')?.touched&&updateForm.get('name')?.errors">
+        <span *ngIf="updateForm.get('name')?.getError('required')">Name is Required</span>
+    </div>
+    <input type="email" placeholder="Enter Your New Email" class="form-control my-3" formControlName="email">
+    <div class="alert alert-danger my-3" *ngIf="updateForm.get('email')?.touched&&updateForm.get('email')?.errors">
+        <span *ngIf="updateForm.get('email')?.getError('required')">Email is Required</span>
+        <span *ngIf="updateForm.get('email')?.getError('email')">Email is Invalid</span>
+    </div>
+    <input type="tel" placeholder="Enter Your New Phone" class="form-control" formControlName="phone">
+    <div class="alert alert-danger my-3" *ngIf="updateForm.get('phone')?.touched&&updateForm.get('phone')?.errors">
+        <span *ngIf="updateForm.get('phone')?.getError('required')">Phone is Required</span>
+        <span *ngIf="updateForm.get('phone')?.getError('pattern')">Phone is Invalid</span>
+    </div>
+    <button class="btn btn-outline-success my-3" [disabled]="updateForm.invalid">
+    <span *ngIf="!loading">Submit</span>
+    <span *ngIf="loading"><i class="fas fa-spinner fa-spin"></i></span>    
+    </button>
+    <div class="alert alert-danger" *ngIf="msg">
+        <span>{{msg}}</span>
+    </div>
+</form>
+</main>

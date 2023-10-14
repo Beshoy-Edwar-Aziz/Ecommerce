@@ -19,3 +19,16 @@ main{
     width: 80px;
     height: 80px;
 }
+.pro{
+    padding: 70px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.orders{
+    border-top: 2px dashed #000;
+}
+.shipping{
+    border-top: 2px dashed #000;
+}

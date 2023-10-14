@@ -4,6 +4,7 @@ import { ProductServiceService } from '../product-service.service';
 import { CartService } from '../cart.service';
 import { WishlistService } from '../wishlist.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
 declare let Swal:any;
 @Component({
   selector: 'app-product-details',
@@ -16,7 +17,8 @@ export class ProductDetailsComponent {
   loading:boolean=false;
   heart:any=[]
   @ViewChild('heart') heartBeat!:ElementRef
-  constructor(private _ActivatedRoute:ActivatedRoute,private _prodService:ProductServiceService,private _cartService:CartService,private _wishListService:WishlistService){
+  constructor(private _ActivatedRoute:ActivatedRoute,private _prodService:ProductServiceService,private _cartService:CartService,private _wishListService:WishlistService, 
+    private _toastr:ToastrService){
     let {id}=_ActivatedRoute.snapshot.params;
     _prodService.getSingleProd(id).subscribe({
       next:({data})=>{
@@ -63,7 +65,7 @@ export class ProductDetailsComponent {
   addToWishList(id:string){
     this._wishListService.addWishList(id).subscribe({
       next:(data)=>{
-        
+        this._toastr.success(data.message,"Success")
         }  
       }
     )

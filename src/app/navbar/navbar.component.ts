@@ -18,7 +18,8 @@ export class NavbarComponent {
     }})
     this._authservice.decoded.subscribe((data:any)=>{
       if(data){
-        this.isLoggedIn=true;  
+       this.isLoggedIn=true;
+          
       }else{
         this.isLoggedIn=false;
       }

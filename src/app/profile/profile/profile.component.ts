@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CartService } from 'src/app/cart.service';
 
@@ -10,21 +11,28 @@ import { CartService } from 'src/app/cart.service';
 export class ProfileComponent {
 cartItems:any=[]
 userData:any
-  constructor(private _auth:AuthService,private _cartService:CartService){
+  constructor(private _auth:AuthService,private _cartService:CartService, private _Router:Router){
   
+  
+}
+openUpdateUserData():void{
+  this._Router.navigate(['/updateUserData'])
+}
+openChangeUserPassword():void{
+  this._Router.navigate(['/updateUserPassword'])
 }
 ngOnInit(){
   this._cartService.getAllOrders(this.userID).subscribe({
     next:(data)=>{
       this.cartItems=data;
-      console.log(data);
       
     }
   })
+  
   this._auth.getUser(this.userID).subscribe({
     next:({data})=>{
       this.userData=data;
-      console.log(data);
+      
       
     }
   })
