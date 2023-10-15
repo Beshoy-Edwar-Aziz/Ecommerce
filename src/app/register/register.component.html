@@ -8,7 +8,7 @@
         <span *ngIf="register.get('name')?.getError('required')">Name is required</span>
     </div>
     <input type="email" formControlName="email" class="form-control" placeholder="Enter your email">
-    <div class="alert alert-danger" *ngIf="register.get('email')?.touched&&register.get('email')?.errors">
+    <div class="alert alert-danger my-3" *ngIf="register.get('email')?.touched&&register.get('email')?.errors">
         <span *ngIf="register.get('email')?.getError('email')">Invalid Email address</span>
         <span *ngIf="register.get('email')?.getError('required')">Email is required</span>
     </div>
@@ -24,7 +24,7 @@
         <span *ngIf="register.get('password')?.getError('required')">Password is required</span>
     </div>
     <input type="password" formControlName="rePassword" class="form-control" placeholder="Enter your rePassword">
-    <div class="alert alert-danger" *ngIf="register.get('rePassword')?.touched&&register.get('rePassword')?.errors">
+    <div class="alert alert-danger my-3" *ngIf="register.get('rePassword')?.touched&&register.get('rePassword')?.errors">
         
         <span *ngIf="register.get('rePassword')?.getError('required')">rePassword is required</span>
         <span *ngIf="register.get('rePassword')?.getError('rePassword')">Doesn't Match The Password</span>

@@ -66,6 +66,8 @@ export class ProductDetailsComponent {
     this._wishListService.addWishList(id).subscribe({
       next:(data)=>{
         this._toastr.success(data.message,"Success")
+        this._wishListService.changeCountOfWish(data.data.length)
+        
         }  
       }
     )

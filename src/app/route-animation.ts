@@ -9,7 +9,7 @@ import {
  } from '@angular/animations';
  export const slideInAnimation =
     trigger('routeAnimations', [
-         transition('Home => profile', [
+         transition('home => *', [
               query(':enter, :leave', 
                    style({ position: 'fixed',  width: '100%' }), 
                    { optional: true }),
@@ -26,8 +26,8 @@ import {
                        ], { optional: true }),
                ])
          ]),
-         transition('profile => Home', [
-               query(':enter, :leave', 
+         transition('profile => home', [
+               query(':leave, :enter', 
                    style({ position: 'fixed', width: '100%' }), 
                    { optional: true }),
                group([
@@ -38,9 +38,9 @@ import {
                    ], { optional: true }),
                    query(':leave', [
                         style({ transform: 'translateX(0%)' }),
-                        animate('0.5s ease-in-out', 
+                        animate('0.5s ease-in-out'), 
                         style({ transform: 'translateX(100%)' })
-               )], { optional: true }),
+                   ], { optional: true }),
                ])
         ]),
  ]);

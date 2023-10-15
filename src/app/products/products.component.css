@@ -38,3 +38,6 @@ main{
 #search:focus{
     width: 75% !important;
 }
+.page-item:not(:first-child) .page-link:hover{
+    cursor: pointer;
+}

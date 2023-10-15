@@ -1,11 +1,9 @@
 <div *ngIf="loadingPage">
     <app-loading></app-loading>
 </div>
+<main>
 <div class="container my-5" *ngIf="check()&&thereIsCart==false; else nodata" >
-    <div class="d-flex justify-content-between bg-body-secondary py-3 px-2">
-    <h2 class="lead">Total Price is {{loggedCart.totalCartPrice|currency:"EGP"}}</h2>
-    <span class="remBtn text-danger" (click)="deleteAllCart()">Remove All <i class="fa-solid fa-trash"></i></span>
-</div>
+    
     <div class="row my-3" *ngFor="let item of loggedCart.products">
         <div class="col-md-2">
             <img [src]="item.product.imageCover" class="w-100" alt="">
@@ -32,8 +30,13 @@
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-between bg-body-secondary py-3 px-2 mb-2">
+        <h2 class="lead">Total Price is {{loggedCart.totalCartPrice|currency:"EGP"}}</h2>
+        <span class="remBtn text-danger" (click)="deleteAllCart()">Remove All <i class="fa-solid fa-trash"></i></span>
+    </div>
     <a [routerLink]="['/checkout/'+loggedCart._id]"><button class="btn btn-success w-100">Checkout</button></a>
 </div>
+</main>
 <ng-template #nodata>
     <div class="container gent d-flex flex-column min-vh-100 justify-content-center align-items-center">
         <i class="fa-regular fa-circle-xmark fa-beat-fade"></i>

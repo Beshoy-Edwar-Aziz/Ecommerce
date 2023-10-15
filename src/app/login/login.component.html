@@ -2,13 +2,13 @@
     <form (ngSubmit)="handleLogin()" [formGroup]="login">
         <h3>Login Now:</h3>
         <input type="email" formControlName="email" class="form-control" placeholder="Enter your email">
-        <div class="alert alert-danger" *ngIf="login.get('email')?.touched&&login.get('email')?.errors">
+        <div class="alert alert-danger my-3" *ngIf="login.get('email')?.touched&&login.get('email')?.errors">
             <span *ngIf="login.get('email')?.getError('email')">Invalid Email address</span>
             <span *ngIf="login.get('email')?.getError('required')">Email is required</span>
         </div>
         <input type="password" formControlName="password" class="form-control my-3" placeholder="Enter your password">
         <a routerLink="/forgotPassword" class="text-info d-block mb-2 ">ForgotPassword?...</a>
-        <div class="alert alert-danger" *ngIf="login.get('password')?.touched&&login.get('password')?.errors">
+        <div class="alert alert-danger my-3" *ngIf="login.get('password')?.touched&&login.get('password')?.errors">
             <ul *ngIf="login.get('password')?.getError('pattern')">
                 <li>At least one upper case English letter</li>
                 <li>At least one lower case English letter</li>
@@ -22,7 +22,7 @@
             <span *ngIf="!isloading">Login</span>
             <span *ngIf="isloading"><i class="fa-solid fa-spinner fa-spin"></i></span>
         </button>
-        <div *ngIf="message" class="alert alert-danger">
+        <div *ngIf="message" class="alert alert-danger my-3">
             {{message}}
         </div>
     </form>
